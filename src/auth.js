@@ -31,3 +31,19 @@ export const hasRole = (tokenData, role) => {
   return userRole === role;
 };
 
+export const getAuthenticatedUser = async (authHeader) => {
+  const tokenData = verifyToken(authHeader);
+  if (!tokenData) return null;
+
+  try {
+    const user = await prisma.applicationUser.findUnique({
+      where: { Id: tokenData.nameid || tokenData.sub || tokenData.userId },
+    });
+    return user;
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    console.error("Error fetching user:", error);
+    return null;
+  }
+};
+
