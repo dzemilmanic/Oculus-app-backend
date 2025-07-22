@@ -43,6 +43,12 @@ export const typeDefs = `#graphql
     Message: String!
   }
 
+  type UpdateResponse {
+    Success: Boolean!
+    Message: String!
+    User: ApplicationUser
+  }
+
   input ReviewInput {
     Rating: Int!
     Content: String!
@@ -63,6 +69,12 @@ export const typeDefs = `#graphql
     Title: String!
     Content: String!
     PublishedDate: String!
+  }
+
+  input ChangeUserDataInput {
+    FirstName: String
+    LastName: String
+    Biography: String
   }
 
   type Query {
@@ -86,5 +98,8 @@ export const typeDefs = `#graphql
     createNews(input: NewsInput!): News!
     updateNews(id: Int!, input: NewsUpdateInput!): News!
     deleteNews(id: Int!): DeleteResponse!
+    
+    # User data mutations
+    updateUserData(input: ChangeUserDataInput!): UpdateResponse!
   }
 `;
