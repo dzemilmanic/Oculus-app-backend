@@ -1,4 +1,4 @@
-import prisma from "./database.js";
+import prisma from "../database.js";
 import { getAuthenticatedUser } from "./auth.js";
 
 export const userDataResolvers = {
